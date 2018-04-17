@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flex网页实践</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {width: 100%;height: 100%;}
+        .container-fluid {padding: 0;margin: 0;}
+        .container-fluid .row {padding: 0;margin: 0;}
+        #app {width: 100%;height: 100%;}
+        .left {height: 100%;background-color: #CC9999;}
+        .right {height: 100%;background-color: #CCCC99;}
+        .right > p {text-align: center;}
+        .flex-container {display: flex;width: 80%;height: 70%; margin: 0 auto;background-color: #99CCCC}
+        .flex-container .item {background-color: #FF6666;margin: 2px 2px;}
+    </style>
+</head>
+<body class="container-fluid">
+<div id="app" class="row">
+    <div class="col-lg-4 col-md-4 left">
+        <button class="btn btn-default" onclick="flex.addItem()">添加子元素</button>
+        <button class="btn btn-default" onclick="flex.reduceItem()">删除子元素</button>
+        <div>
+            <h1>container</h1>
+            <label for="flex-direction"><span>flex-direction属性决定主轴的方向（即项目的排列方向）。</span>
+                <select class="form-control" name="flex-direction" id="flex-direction"
+                        onchange="flex.containerChangeStyle('flex-direction',event)">
+                    <option value="row">row</option>
+                    <option value="row-reverse">row-reverse</option>
+                    <option value="column">column</option>
+                    <option value="column-reverse">column-reverse</option>
+                </select></label>
+            <label for="flex-wrap"><span>flex-wrap属性定义，如果一条轴线排不下，如何换行。</span>
+                <select class="form-control" name="flex-wrap" id="flex-wrap"
+                        onchange="flex.containerChangeStyle('flex-wrap',event)">
+                    <option value="nowrap">nowrap</option>
+                    <option value="wrap ">wrap</option>
+                    <option value="wrap-reverse">wrap-reverse</option>
+                </select></label>
+            <label for="justify-content"><span>justify-content属性定义了项目在主轴上的对齐方式。</span>
+                <select class="form-control" name="justify-content" id="justify-content"
+                        onchange="flex.containerChangeStyle('justify-content',event)">
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-around">space-around</option>
+                </select></label>
+            <label for="align-items"><span>align-items属性定义项目在交叉轴上如何对齐。</span>
+                <select class="form-control" name="align-items" id="align-items"
+                        onchange="flex.containerChangeStyle('align-items',event)">
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="baseline">baseline</option>
+                    <option value="stretch">stretch</option>
+                </select></label>
+            <label for="align-content"><span>align-items属性定义项目在交叉轴上如何对齐。</span>
+                <select class="form-control" name="align-content" id="align-content"
+                        onchange="flex.containerChangeStyle('align-content',event)">
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-around">space-around</option>
+                    <option value="stretch">stretch</option>
+                </select></label>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-8 right">
+        <p>flex container</p>
+        <div class="flex-container">
+            <div class="item">
+                我是item1
+            </div>
+            <div class="item">
+                我是item2
+            </div>
+            <div class="item">
+                我是item3
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var flex = {
+        num: 4,
+        container: document.getElementsByClassName('flex-container')[0],
+        item:document.getElementsByClassName('item'),
+        addItem: function () {
+            var div = document.createElement('div'),
+                node = document.createTextNode('我是item' + this.num);
+            div.className = 'item';
+            div.appendChild(node);
+            this.container.appendChild(div);
+            this.num++
+        },
+        reduceItem: function () {
+            if (this.num === 1) return;
+            var itemIndex = document.getElementsByClassName('item').length - 1,
+                item = document.getElementsByClassName('item')[itemIndex];
+            this.container.removeChild(item);
+            this.num--;
+        },
+        containerChangeStyle: function (name, e) {
+            switch (name) {
+                case 'flex-direction':
+                    this.container.style.flexDirection = e.target.value;
+                    break;
+                case 'flex-wrap':
+                    this.container.style.flexWrap = e.target.value;
+                    break;
+                case 'justify-content':
+                    this.container.style.justifyContent = e.target.value;
+                    break;
+                case 'align-items':
+                    this.container.style.alignItems = e.target.value;
+                    break;
+                case 'align-content':
+                    this.container.style.alignContent = e.target.value;
+                    break;
+            }
+        },
+        itemChangeStyle:function(name,e){
+            for( var i = 0;i < this.item.length;i++ ){}
+        }
+    };
+</script>
+</body>
+</html>
