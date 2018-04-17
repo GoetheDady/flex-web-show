@@ -10,11 +10,11 @@
         .container-fluid {padding: 0;margin: 0;}
         .container-fluid .row {padding: 0;margin: 0;}
         #app {width: 100%;height: 100%;}
-        .left {height: 100%;background-color: #CC9999;}
-        .right {height: 100%;background-color: #CCCC99;}
+        .left {height: 100%;background-color: #999999;}
+        .right {height: 100%;background-color: #CCCCCC;}
         .right > p {text-align: center;}
-        .flex-container {display: flex;width: 80%;height: 70%; margin: 0 auto;background-color: #99CCCC}
-        .flex-container .item {background-color: #FF6666;margin: 2px 2px;}
+        .flex-container {display: flex;width: 80%;height: 70%; margin: 0 auto;background-color: #ffffff}
+        .flex-container .item {background-color: #666666;margin: 2px 2px;color: #fff;padding: 10px 10px;}
     </style>
 </head>
 <body class="container-fluid">
@@ -89,6 +89,9 @@
         num: 4,
         container: document.getElementsByClassName('flex-container')[0],
         item:document.getElementsByClassName('item'),
+        /*
+
+         */
         addItem: function () {
             var div = document.createElement('div'),
                 node = document.createTextNode('我是item' + this.num);
